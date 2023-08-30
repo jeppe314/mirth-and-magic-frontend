@@ -1,12 +1,9 @@
-import { socket } from "./socket.ts";
-import { useEffect, useState } from "react";
 import "./App.css";
 import LoginButton from "./components/LoginButton.tsx";
 import LogoutButton from "./components/LogoutButton.tsx";
 import Profile from "./components/Profile.tsx";
 
 function App() {
-
   return (
     <div className="bg-slate-500 h-screen flex justify-center items-center">
       <LoginButton />
