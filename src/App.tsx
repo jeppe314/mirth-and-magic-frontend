@@ -5,6 +5,7 @@ import "./App.css";
 function App() {
   useEffect(() => {
     function onConnect() {
+      console.log("BIGLOLS");
       console.log("connected");
     }
     socket.connect();
