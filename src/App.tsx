@@ -7,6 +7,7 @@ function App() {
     function onConnect() {
       console.log("connected");
     }
+    socket.connect();
     socket.on("connect", onConnect);
     socket.emit("test");
     return () => {

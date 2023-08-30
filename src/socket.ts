@@ -21,7 +21,9 @@ interface SocketData {
 
 // please note that the types are reversed
 const URL = process.env.NODE_ENV === "production" ? undefined : "http://localhost:8000";
-export const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(URL);
+export const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(URL, {
+  autoConnect: false,
+});
 
 // Debugging
 socket.on("connect", () => {
