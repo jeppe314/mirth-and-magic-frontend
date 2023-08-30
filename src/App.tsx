@@ -1,23 +1,18 @@
 import { socket } from "./socket.ts";
 import { useEffect, useState } from "react";
 import "./App.css";
+import LoginButton from "./components/LoginButton.tsx";
+import LogoutButton from "./components/LogoutButton.tsx";
+import Profile from "./components/Profile.tsx";
 
 function App() {
-  useEffect(() => {
-    function onConnect() {
-      console.log("BIGLOLS");
-      console.log("connected");
-    }
-    socket.connect();
-    socket.on("connect", onConnect);
-    socket.emit("test");
-    return () => {
-      socket.off("connect", onConnect);
-    };
-  }, []);
+
   return (
     <div className="bg-slate-500 h-screen flex justify-center items-center">
+      <LoginButton />
       <h3 className="text-slate-100">MIRTH AND MAGIC WOOH</h3>
+      <LogoutButton />
+      <Profile />
     </div>
   );
 }
