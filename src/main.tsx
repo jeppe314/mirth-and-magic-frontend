@@ -5,11 +5,17 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import { Auth0Provider } from "@auth0/auth0-react";
 import ErrorPage from "./pages/ErrorPage.tsx";
+import Home from "./pages/Home.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/home",
+    element: <Home />,
     errorElement: <ErrorPage />,
   },
 ]);
