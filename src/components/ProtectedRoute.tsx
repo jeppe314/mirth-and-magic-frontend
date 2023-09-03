@@ -1,6 +1,13 @@
+import { ReactNode } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-export const ProtectedRoute = ({ isAllowed, redirectPath = "/login", children }) => {
-  console.log("isallowed: ", isAllowed);
+
+interface ProtectedRouteProps {
+  isAllowed: boolean;
+  redirectPath?: string;
+  children: ReactNode;
+}
+
+export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ isAllowed, redirectPath = "/login", children }) => {
   if (!isAllowed) {
     return <Navigate to={redirectPath} replace />;
   }
