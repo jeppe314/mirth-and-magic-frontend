@@ -7,7 +7,7 @@ interface ProtectedRouteProps {
   children: ReactNode;
 }
 
-export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ isAllowed, redirectPath = "/login", children }) => {
+export const ProtectedRoute = ({ isAllowed, redirectPath = "/login", children }: ProtectedRouteProps) => {
   if (!isAllowed) {
     return <Navigate to={redirectPath} replace />;
   }

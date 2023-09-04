@@ -1,5 +1,3 @@
-import { Socket } from "socket.io-client";
-import { useEffect } from "react";
 import LogoutButton from "../components/LogoutButton";
 type Props = {};
 
