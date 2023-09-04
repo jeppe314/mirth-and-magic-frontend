@@ -9,8 +9,7 @@ export default function LoginPage({}: Props) {
     return <Navigate to="/" />;
   }
   return (
-    <div>
-      LoginPage
+    <div className="font-custom h-screen bg-gray-600 flex justify-center items-center">
       <LoginButton />
     </div>
   );
