@@ -15,16 +15,11 @@ function App() {
   return (
     <BrowserRouter basename="/">
       <Routes>
-        <Route
-          index
-          path="/"
-          element={
-            <ProtectedRoute isAllowed={isAuthenticated}>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
-        
+        <Route element={<ProtectedRoute isAllowed={isAuthenticated} />}>
+          <Route path="home" element={<Home />} />
+        </Route>
+        {/* Add more protected routes here */}
+
         <Route path="/login" element={<LoginPage />} />
       </Routes>
     </BrowserRouter>

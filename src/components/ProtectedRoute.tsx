@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Navigate, Outlet } from "react-router-dom";
+import Layout from "./Layout";
 
 interface ProtectedRouteProps {
   isAllowed: boolean;
@@ -11,5 +12,11 @@ export const ProtectedRoute = ({ isAllowed, redirectPath = "/login", children }:
   if (!isAllowed) {
     return <Navigate to={redirectPath} replace />;
   }
-  return children ? children : <Outlet />;
+  return children ? (
+    children
+  ) : (
+    <Layout>
+      <Outlet />;
+    </Layout>
+  );
 };
