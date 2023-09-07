@@ -5,7 +5,7 @@ import Layout from "./Layout";
 interface ProtectedRouteProps {
   isAllowed: boolean;
   redirectPath?: string;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const ProtectedRoute = ({ isAllowed, redirectPath = "/login", children }: ProtectedRouteProps) => {
