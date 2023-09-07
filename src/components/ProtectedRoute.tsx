@@ -12,11 +12,6 @@ export const ProtectedRoute = ({ isAllowed, redirectPath = "/login", children }:
   if (!isAllowed) {
     return <Navigate to={redirectPath} replace />;
   }
-  return children ? (
-    children
-  ) : (
-    <Layout>
-      <Outlet />;
-    </Layout>
-  );
+
+  return <Layout>{children ? children : <Outlet />}</Layout>;
 };
