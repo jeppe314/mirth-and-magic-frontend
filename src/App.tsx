@@ -16,24 +16,12 @@ function App() {
   return (
     <BrowserRouter basename="/">
       <Routes>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute isAllowed={isAuthenticated}>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="character"
-          element={
-            <ProtectedRoute isAllowed={isAuthenticated}>
-              <Character />
-            </ProtectedRoute>
-          }
-        />
-        {/* Add more protected routes here */}
         <Route path="/login" element={<LoginPage />} />
+        <Route element={<ProtectedRoute isAllowed={isAuthenticated} />}>
+          <Route index path="/" element={<Home />} />
+          <Route path="character" element={<Character />} />
+          {/* Add more protected routes here */}
+        </Route>
       </Routes>
     </BrowserRouter>
   );
