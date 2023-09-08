@@ -12,12 +12,7 @@ export default function Home({}: Props) {
     const apiTest = async () => {
       console.log("testing api!");
       const token = await getAccessTokenSilently();
-      console.log("🚀 ~ file: Home.tsx:15 ~ apiTest ~ token:", token);
-      const response = await axios.get("http://localhost:8000/user/profile", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get("http://localhost:8000/user");
 
       console.log(response.data);
     };

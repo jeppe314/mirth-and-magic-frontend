@@ -10,9 +10,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       domain="dev-k00qqt5beu2ehlsq.eu.auth0.com"
       clientId="2J3sMaa0x3k0MBjjAI6VN6SwiAOuxzU3"
       authorizationParams={{
-        redirect_uri: "http://localhost:5173/",
+        redirect_uri: "http://localhost:5173/login-redirect",
         audience: "https://dev-k00qqt5beu2ehlsq.eu.auth0.com/api/v2/",
-        scope: "read:current_user update:current_user_metadata",
+        scope: "openid profile email read:current_user update:current_user_metadata",
       }}
     >
       <App />
