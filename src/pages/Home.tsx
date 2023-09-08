@@ -6,18 +6,7 @@ import axios from "axios";
 type Props = {};
 
 export default function Home({}: Props) {
-  const { user, getAccessTokenSilently } = useAuth0();
-  console.log("🚀 ~ file: Home.tsx:9 ~ Home ~ user:", user);
-  useEffect(() => {
-    const apiTest = async () => {
-      console.log("testing api!");
-      const token = await getAccessTokenSilently();
-      const response = await axios.get("http://localhost:8000/user");
-
-      console.log(response.data);
-    };
-    apiTest();
-  }, []);
+  const { user } = useAuth0();
 
   return (
     <div className="h-full flex flex-col justify-between items-center font-sans">

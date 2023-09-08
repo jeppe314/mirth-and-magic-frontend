@@ -8,9 +8,9 @@ export default function LoginRedirect() {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const token = await getAccessTokenSilently();
-      console.log("🚀 ~ file: LoginRedirect.tsx:12 ~ fetchUser ~ token:", token);
-      await checkUser(token);
+      const res = await checkUser();
+      console.log("checked user");
+      console.log(res);
     };
 
     fetchUser();

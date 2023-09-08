@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import { mountStoreDevtool } from "simple-zustand-devtools";
-import route from "../api/user.js";
+import route from "../api/user";
 
 interface User {
   id?: string;
@@ -13,13 +13,13 @@ interface User {
 
 interface State {
   user: User;
-  checkUser: (token: string) => Promise<void>;
+  checkUser: () => Promise<void>;
 }
 
 export const useUserStore = create<State>((set) => ({
   user: {},
   session: {},
-  checkUser: async (token: string) => {
+  checkUser: async () => {
     console.log("checking and doing nothing hehe");
     const res = await route.getUser();
     console.log("🚀 ~ file: user.store.tsx:24 ~ checkUser: ~ res:", res);
