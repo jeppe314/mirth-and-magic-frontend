@@ -11,6 +11,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       clientId="2J3sMaa0x3k0MBjjAI6VN6SwiAOuxzU3"
       authorizationParams={{
         redirect_uri: "http://localhost:5173/",
+        audience: "https://dev-k00qqt5beu2ehlsq.eu.auth0.com/api/v2/",
+        scope: "read:current_user update:current_user_metadata",
       }}
     >
       <App />
