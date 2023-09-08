@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from "../../axios";
 
-const getUser = axios.get("http://localhost:8000/user");
+const getUser = axios.get("/user");
 
 export default {
   getUser,
