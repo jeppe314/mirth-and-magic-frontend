@@ -7,6 +7,8 @@ import { ProtectedRoute } from "./components/ProtectedRoute.tsx";
 import Character from "./pages/Character.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
 import LoginRedirect from "./components/LoginRedirect.tsx";
+import WelcomePage from "./pages/WelcomePage.tsx";
+import LogoutComponent from "./pages/LogoutComponent.tsx";
 
 function App() {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -23,6 +25,7 @@ function App() {
           <Route index path="/" element={<Home />} />
           <Route path="character" element={<Character />} />
           <Route path="login-redirect" element={<LoginRedirect />} />
+          <Route path="logout" element={<LogoutComponent />} />
           {/* Add more protected routes here */}
         </Route>
         <Route path="*" element={<ErrorPage />} />

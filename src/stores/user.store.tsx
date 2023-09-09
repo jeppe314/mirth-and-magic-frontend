@@ -2,11 +2,6 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import route from "../api/user";
 
-interface State {
-  user: User;
-  checkUser: (user: object) => Promise<void>;
-}
-
 const initialState = {
   user: {},
   session: {},
@@ -28,11 +23,20 @@ export const useUserStore = create(
         // If the user exists in the database, we update the store with their details
         set({ user: fetchedUser });
       },
+      setUsername: async (sub: string, username: string) => {
+        const payload = { username, sub };
+        try {
+          await route.setUsername(payload);
+          set((state: UserStoreType) => ({ user: { ...state.user, username } }));
+        } catch (error) {
+          console.error(error);
+        }
+      },
       reset: () => set(initialState),
     }),
     {
-      name: "user-store", // unique name for the storage key
-      storage: createJSONStorage(() => sessionStorage), // using localStorage, but you can also use sessionStorage
+      name: "user-store",
+      storage: createJSONStorage(() => sessionStorage), //using sessionstorage, not sure if should use session or local or other?
     }
   )
 );

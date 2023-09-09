@@ -4,9 +4,9 @@ import { useUserStore } from "../stores/user.store";
 import { Navigate } from "react-router-dom";
 
 export default function LoginRedirect() {
-  const { getAccessTokenSilently, user } = useAuth0();
-  const checkUser = useUserStore((state) => state.checkUser);
-  const storeUser = useUserStore((state) => state.user);
+  const { user } = useAuth0();
+  const checkUser = useUserStore((state: any) => state.checkUser);
+  const storeUser = useUserStore((state: any) => state.user);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -24,9 +24,7 @@ export default function LoginRedirect() {
   }, [storeUser, user, checkUser]);
 
   if (storeUser.email) {
-    console.log("user exists, redirecting");
-    const path = storeUser.username ? "/" : "/welcome";
-    return <Navigate to={path} />;
+    return <Navigate to="/" />;
   }
 
   return <div className="bg-pink-400">LoginRedirect LOADING...</div>;
