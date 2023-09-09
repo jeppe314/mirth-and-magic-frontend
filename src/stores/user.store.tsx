@@ -1,31 +1,38 @@
 import { create } from "zustand";
-import { devtools } from "zustand/middleware";
-import { mountStoreDevtool } from "simple-zustand-devtools";
+import { persist, createJSONStorage } from "zustand/middleware";
 import route from "../api/user";
-
-interface User {
-  id?: string;
-  username?: string;
-  email?: string;
-  sub?: string;
-  role?: string;
-}
 
 interface State {
   user: User;
-  checkUser: () => Promise<void>;
+  checkUser: (user: object) => Promise<void>;
 }
 
-export const useUserStore = create<State>((set) => ({
+const initialState = {
   user: {},
   session: {},
-  checkUser: async () => {
-    console.log("checking and doing nothing hehe");
-    const res = await route.getUser();
-    console.log("🚀 ~ file: user.store.tsx:24 ~ checkUser: ~ res:", res);
-  },
+};
 
-  //   addStr: () => set((state) => ({ strength: state.strength + 1 })),
-}));
-
-mountStoreDevtool("Store", useUserStore);
+export const useUserStore = create(
+  persist(
+    (set) => ({
+      ...initialState,
+      checkUser: async (authUser) => {
+        const { data } = await route.getUser();
+        const fetchedUser = data[0];
+        if (!fetchedUser) {
+          const { data } = await route.addUser(authUser);
+          // If the user doesn't exist in the database, we add them
+          set({ user: data }); // Assuming data contains the newly added user's details
+          return;
+        }
+        // If the user exists in the database, we update the store with their details
+        set({ user: fetchedUser });
+      },
+      reset: () => set(initialState),
+    }),
+    {
+      name: "user-store", // unique name for the storage key
+      storage: createJSONStorage(() => sessionStorage), // using localStorage, but you can also use sessionStorage
+    }
+  )
+);

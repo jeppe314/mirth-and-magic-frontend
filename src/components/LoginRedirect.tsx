@@ -1,20 +1,33 @@
 import { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useUserStore } from "../stores/user.store";
+import { Navigate } from "react-router-dom";
 
 export default function LoginRedirect() {
-  const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently, user } = useAuth0();
   const checkUser = useUserStore((state) => state.checkUser);
+  const storeUser = useUserStore((state) => state.user);
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await checkUser();
-      console.log("checked user");
-      console.log(res);
+      const payload = {
+        email: user?.email,
+        sub: user?.sub,
+      };
+      await checkUser(payload);
     };
+    // Check if the storeUser object is empty
+    if (!storeUser.email) {
+      console.log("fetching user");
+      fetchUser();
+    }
+  }, [storeUser, user, checkUser]);
 
-    fetchUser();
-  }, [checkUser, getAccessTokenSilently]);
+  if (storeUser.email) {
+    console.log("user exists, redirecting");
+    const path = storeUser.username ? "/" : "/welcome";
+    return <Navigate to={path} />;
+  }
 
   return <div className="bg-pink-400">LoginRedirect LOADING...</div>;
 }
