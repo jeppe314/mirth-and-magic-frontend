@@ -30,17 +30,13 @@ export default function CharacterCreationForm({}: Props) {
       <CurrentStep step={step} />
       <div className="navigation flex p-4">
         {step >= 1 && (
-          <ArrowButton
-            direction="Left"
-            iconStyle="text-secondary"
-            onClick={() => setStep((prevStep) => prevStep - 1)}
-          />
+          <ArrowButton direction="Left" iconStyle="text-accent" onClick={() => setStep((prevStep) => prevStep - 1)} />
         )}
         {step <= 2 && (
           <ArrowButton
             direction="Right"
             style="ml-auto"
-            iconStyle="text-secondary"
+            iconStyle="text-accent"
             onClick={() => setStep((prevStep) => prevStep + 1)}
           />
         )}

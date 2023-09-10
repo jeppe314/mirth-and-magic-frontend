@@ -25,6 +25,14 @@ interface AttributesType {
   intelligence?: number;
 }
 
+interface CharacterCreationType {
+  name: string;
+  race: string;
+  attributes: AttributesType;
+}
+
+type Race = "dwarf" | "elf" | "human";
+
 //--------------------------------// STATE TYPES //----------------------------//
 
 interface UserStoreType {
@@ -35,10 +43,10 @@ interface UserStoreType {
 }
 interface CharacterStoreType {
   character: CharacterType;
-  characterCreation: object;
-  updateName: (name: string) => Promise<void>;
-  updateRace: (race: string) => Promise<void>;
-  updateAttribute: (attribute: string, value: number) => Promise<void>;
+  characterCreation: CharacterCreationType;
+  updateName: (name: string) => void;
+  updateRace: (race: string) => void;
+  updateAttribute: (attribute: string, value: number) => void;
   addCharacter: (race: string) => Promise<void>;
   getCharacter: (race: string) => Promise<void>;
   reset: () => Promise<void>;
