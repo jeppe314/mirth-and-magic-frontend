@@ -37,7 +37,17 @@ const IconSlider: React.FC<SliderProps> = ({ min, max, value, updateValue, iconN
   }, []);
 
   return (
-    <div ref={sliderRef} className="slider-container relative w-full h-10 bg-gray-200" onMouseMove={handleMouseMove}>
+    <div
+      ref={sliderRef}
+      className="slider-container relative w-full h-8 rounded-full bg-gray-200"
+      onMouseMove={handleMouseMove}
+    >
+      <div
+        className="bg-blue-400 h-full rounded-r-full"
+        style={{
+          width: `${((value - min) / (max - min)) * 100}%`,
+        }}
+      />
       <div
         className="absolute top-1/2 cursor-pointer"
         style={{
