@@ -6,15 +6,15 @@ const initialState = {
   characterCreation: {
     name: "",
     race: "",
-    attributes: {
-      health: 0,
-      strength: 0,
-      skill: 0,
-      speed: 0,
-      precision: 0,
-      luck: 0,
-      intelligence: 0,
-    },
+    attributes: [
+      { name: "health", value: 0, icon: "FaBeer" },
+      { name: "strength", value: 0, icon: "FaBeer" },
+      { name: "skill", value: 0, icon: "FaBeer" },
+      { name: "speed", value: 0, icon: "FaBeer" },
+      { name: "precision", value: 0, icon: "FaBeer" },
+      { name: "luck", value: 0, icon: "FaBeer" },
+      { name: "intelligence", value: 0, icon: "FaBeer" },
+    ],
   },
 };
 
