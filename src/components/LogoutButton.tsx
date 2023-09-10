@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
+import GlobalButton from "../components/GlobalButton";
 
 const LogoutButton = () => {
   const { handleLogout, navigate } = useLogout();
@@ -8,7 +9,7 @@ const LogoutButton = () => {
   return (
     <>
       {navigate && <Navigate to="/login" replace />}
-      <button onClick={handleLogout}>Log Out</button>
+      <GlobalButton text="Log out" onClick={handleLogout} />
     </>
   );
 };

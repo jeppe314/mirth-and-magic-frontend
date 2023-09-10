@@ -1,14 +1,27 @@
 import { create } from "zustand";
-import { devtools } from "zustand/middleware";
-import { mountStoreDevtool } from "simple-zustand-devtools";
+import { persist, createJSONStorage } from "zustand/middleware";
+// import route from "../api/character";
 
-interface State {
-  character: Object;
-}
-
-export const useCharacterStore = create<State>((set) => ({
+const initialState = {
   character: {},
-  //   addStr: () => set((state) => ({ strength: state.strength + 1 })),
-}));
+};
 
-mountStoreDevtool("Store", useCharacterStore);
+export const useCharacterStore = create(
+  persist(
+    (set) => ({
+      ...initialState,
+      addCharacter: (character: CharacterType) => {
+        console.log("addCharacter");
+      },
+      getCharacter: (character: CharacterType) => {
+        console.log("getCharacter");
+      },
+
+      reset: () => set(initialState),
+    }),
+    {
+      name: "character-store",
+      storage: createJSONStorage(() => sessionStorage), //using sessionstorage, not sure if should use session or local or other?
+    }
+  )
+);

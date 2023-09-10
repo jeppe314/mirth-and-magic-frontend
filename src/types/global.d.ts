@@ -7,6 +7,24 @@ interface User {
   picture?: string;
 }
 
+interface CharacterType {
+  id?: string;
+  name?: string;
+  race?: string;
+  attributes?: AttributesType;
+  inventory?: Array;
+}
+
+interface AttributesType {
+  health?: number;
+  strength?: number;
+  skill?: number;
+  speed?: number;
+  precision?: number;
+  luck?: number;
+  intelligence?: number;
+}
+
 //--------------------------------// STATE TYPES //----------------------------//
 
 interface UserStoreType {

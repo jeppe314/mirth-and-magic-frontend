@@ -10,7 +10,7 @@ const Button: React.FC<ButtonProps> = ({ text, onClick, className }) => {
   return (
     <button
       onClick={onClick}
-      className={`bg-primary text-text-color px-4 py-2 rounded transition duration-300 ease-in-out hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-highlight ${className}`}
+      className={`bg-secondary hover:bg-primary flex w-full justify-center text-text-color-light px-4 py-2 rounded-lg transition duration-300 ease-in-out  focus:outline-none focus:ring-2 focus:ring-highlight ${className}`}
     >
       {text}
     </button>

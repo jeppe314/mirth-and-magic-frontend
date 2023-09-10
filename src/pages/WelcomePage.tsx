@@ -18,7 +18,7 @@ export default function WelcomePage({}: Props) {
   const handleChange = (value: string) => setName(value);
 
   return (
-    <div className="flex h-full gap-1 flex-col justify-center items-center text-center text-text-color">
+    <div className="flex h-full gap-1 flex-col justify-center items-center text-center text-text-color-dark">
       <h1 className="text-lg ">Hey buddy!</h1>
       <h3 className="text-base">You're new here, arent you? Welcome!</h3>
       <p className="text-base">What do your friends call you?</p>
