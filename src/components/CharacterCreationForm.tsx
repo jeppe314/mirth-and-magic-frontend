@@ -5,6 +5,10 @@ import CurrentStep from "./CharacterCreation/CurrentStep";
 
 type Props = {};
 
+interface IconMap {
+  [key: number]: string;
+}
+
 export default function CharacterCreationForm({}: Props) {
   const [step, setStep] = useState(0);
 
@@ -12,14 +16,23 @@ export default function CharacterCreationForm({}: Props) {
     console.log("submit");
   };
 
+  const currentIcon: IconMap = {
+    0: "GiMountainRoad",
+    1: "GiGuards",
+    2: "GiFaceToFace",
+    3: "GiFist",
+  };
+
   return (
-    <div className="flex flex-col justify-between gap-2 w-full h-full p-4">
-      <HeaderIcon name="GiMountainRoad" category="Gi" size="8em" style="text-accent" />
+    <div className="flex flex-col justify-between w-full h-full">
+      <HeaderIcon name={currentIcon[step]} category="Gi" size="8em" style="text-accent" />
       <CurrentStep step={step} />
-      <div className="buttons flex justify-center gap-2">
-        {step >= 2 && <Button text="Back" onClick={() => setStep((prevStep) => prevStep - 1)} />}
-        {step <= 2 && <Button text="Next" onClick={() => setStep((prevStep) => prevStep + 1)} />}
-        {step === 4 && <Button text="Slutför" onClick={() => handleSubmit} />}
+      <div className="navigation flex-col flex justify-center">
+        {step >= 1 && <Button color="secondary" text="Back" onClick={() => setStep((prevStep) => prevStep - 1)} />}
+        {step <= 2 && (
+          <Button color="primary" textColor="light" text="Next" onClick={() => setStep((prevStep) => prevStep + 1)} />
+        )}
+        {step === 3 && <Button text="Slutför" onClick={() => handleSubmit} />}
       </div>
     </div>
   );

@@ -26,7 +26,7 @@ const CurrentStep: React.FC<Props> = ({ step = 1 }) => {
     case 2:
       return <NameSelection value={createCharacter.name} setName={updateName} />;
     case 3:
-      return <AttributesSelection attributes={attributes} />;
+      return <AttributesSelection />;
     default:
       return null;
   }

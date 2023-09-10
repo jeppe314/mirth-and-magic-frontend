@@ -4,13 +4,26 @@ type ButtonProps = {
   text: string;
   onClick?: () => void;
   className?: string;
+  color?: "primary" | "secondary" | "accent";
+  textColor?: "light" | "dark";
 };
 
-const Button: React.FC<ButtonProps> = ({ text, onClick, className }) => {
+const Button: React.FC<ButtonProps> = ({ text, onClick, className, color = "primary", textColor = "light" }) => {
+  const bgColorClasses = {
+    primary: "bg-primary hover:bg-primary-hover",
+    secondary: "bg-secondary hover:bg-secondary-hover",
+    accent: "bg-accent hover:bg-highlight",
+  };
+
+  const textColorClasses = {
+    light: "text-text-color-light",
+    dark: "text-text-color-dark",
+  };
+
   return (
     <button
       onClick={onClick}
-      className={`bg-secondary hover:bg-primary flex w-full justify-center text-text-color-light px-4 py-2 rounded-lg transition duration-300 ease-in-out  focus:outline-none focus:ring-2 focus:ring-highlight ${className}`}
+      className={`${bgColorClasses[color]} ${textColorClasses[textColor]} flex w-full justify-center px-4 py-2 tracking-wider transition duration-300 ease-in-out focus:outline-none  ${className}`}
     >
       {text}
     </button>
