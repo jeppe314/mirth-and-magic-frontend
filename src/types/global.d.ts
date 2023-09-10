@@ -33,5 +33,15 @@ interface UserStoreType {
   setUsername: (user: object) => Promise<void>;
   reset: () => Promise<void>;
 }
+interface CharacterStoreType {
+  character: CharacterType;
+  characterCreation: object;
+  updateName: (name: string) => Promise<void>;
+  updateRace: (race: string) => Promise<void>;
+  updateAttribute: (attribute: string, value: number) => Promise<void>;
+  addCharacter: (race: string) => Promise<void>;
+  getCharacter: (race: string) => Promise<void>;
+  reset: () => Promise<void>;
+}
 
 //-----------------------// OTHER TYPES //-----------------------------//
