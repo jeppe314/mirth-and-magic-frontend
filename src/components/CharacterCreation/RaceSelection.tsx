@@ -1,6 +1,4 @@
 import React from "react";
-// import Icon from "../global/Icon";
-import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
 
 type Race = "dwarf" | "elf" | "human";
 
@@ -11,9 +9,11 @@ type RaceSelectionProps = {
 
 const RaceSelection: React.FC<RaceSelectionProps> = ({ setRace, value }) => {
   return (
-    <div className="flex flex-col items-center">
-      {/* <Icon name="Home" color="primary" fontSize="large" /> */}
-
+    <div className="flex flex-col flex-grow justify-around items-center">
+      <h3 className="text-2xl ">The beginning</h3>
+      <p>"Is that a dwarf...?" "No, it's an elf!" "You are both blind! That's clearly a human!"</p>
+      <p>"Is that a dwarf...?" "No, it's an elf!" "You are both blind! That's clearly a human!"</p>
+      <p>"Is that a dwarf...?" "No, it's an elf!" "You are both blind! That's clearly a human!"</p>
       <p>"Is that a dwarf...?" "No, it's an elf!" "You are both blind! That's clearly a human!"</p>
       <select value={value} onChange={(e) => setRace(e.target.value as Race)}>
         <option value="dwarf">Dwarf</option>

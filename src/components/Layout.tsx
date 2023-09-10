@@ -7,11 +7,11 @@ interface Props {}
 const Layout = ({}: Props) => {
   return (
     <div className="h-screen flex flex-col justify-between items-center font-sans">
-      <Header />
+      {/* <Header /> */}
       <div className="w-full h-full">
         <Outlet />
       </div>
-      <BottomNavigation />
+      {/* <BottomNavigation /> */}
     </div>
   );
 };
