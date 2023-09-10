@@ -10,6 +10,7 @@ export default {
         secondary: "#588157",
         accent: "#A3B18A",
         highlight: "#DAD7CD",
+        selected: "#c1c1c13b",
         "text-color-light": "#DAD7CD",
         "text-color-dark": "#25362E",
       },

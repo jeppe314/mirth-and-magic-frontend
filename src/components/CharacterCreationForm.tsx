@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Button from "./GlobalButton";
 import HeaderIcon from "./global/HeaderIcon";
 import CurrentStep from "./CharacterCreation/CurrentStep";
+import ArrowButton from "./global/ArrowButton";
 
 type Props = {};
 
@@ -27,13 +28,24 @@ export default function CharacterCreationForm({}: Props) {
     <div className="flex flex-col justify-between w-full h-full">
       <HeaderIcon name={currentIcon[step]} category="Gi" size="8em" style="text-accent" />
       <CurrentStep step={step} />
-      <div className="navigation flex-col flex justify-center">
-        {step >= 1 && <Button color="secondary" text="Back" onClick={() => setStep((prevStep) => prevStep - 1)} />}
-        {step <= 2 && (
-          <Button color="primary" textColor="light" text="Next" onClick={() => setStep((prevStep) => prevStep + 1)} />
+      <div className="navigation flex p-4">
+        {step >= 1 && (
+          <ArrowButton
+            direction="Left"
+            iconStyle="text-secondary"
+            onClick={() => setStep((prevStep) => prevStep - 1)}
+          />
         )}
-        {step === 3 && <Button text="Slutför" onClick={() => handleSubmit} />}
+        {step <= 2 && (
+          <ArrowButton
+            direction="Right"
+            style="ml-auto"
+            iconStyle="text-secondary"
+            onClick={() => setStep((prevStep) => prevStep + 1)}
+          />
+        )}
       </div>
+      {step === 3 && <Button text="Slutför" onClick={() => handleSubmit} />}
     </div>
   );
 }
