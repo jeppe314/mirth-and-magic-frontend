@@ -39,10 +39,10 @@ const IconSlider: React.FC<SliderProps> = ({ min, max, value, updateValue, iconN
   return (
     <div ref={sliderRef} className="slider-container relative w-full h-10 bg-gray-200" onMouseMove={handleMouseMove}>
       <div
-        className="absolute top-0 h-full"
+        className="absolute top-1/2 cursor-pointer"
         style={{
           left: `${((value - min) / (max - min)) * 100}%`,
-          transform: "translateX(-50%)",
+          transform: "translate(-50%, -50%)",
         }}
         onMouseDown={handleMouseDown}
       >
