@@ -12,9 +12,11 @@ export default function AttributesSelection({}: Props) {
 
   return (
     <LoreText heading="At the gates...">
-      {Object.entries(attributes).map(([key, value]) => (
-        <AttributeSlider key={key} attribute={key} value={value} />
-      ))}
+      <div className="w-full flex flex-col gap-2 p-2">
+        {Object.entries(attributes).map(([key, attribute]) => (
+          <AttributeSlider key={key} attribute={attribute} value={attribute.value} />
+        ))}
+      </div>
     </LoreText>
   );
 }
