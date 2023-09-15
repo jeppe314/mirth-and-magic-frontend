@@ -13,7 +13,6 @@ export default function AttributesSelection({}: Props) {
   return (
     <LoreText heading="At the gates...">
       {Object.entries(attributes).map(([key, value]) => (
-        // <BasicInput type="range" value={attribute} onChange={() => console.log(attribute)} />
         <AttributeSlider key={key} attribute={key} value={value} />
       ))}
     </LoreText>
