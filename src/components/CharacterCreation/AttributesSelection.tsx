@@ -14,7 +14,7 @@ export default function AttributesSelection({}: Props) {
     <LoreText heading="At the gates...">
       <div className="w-full flex flex-col gap-2 p-2">
         {Object.entries(attributes).map(([key, attribute]) => (
-          <AttributeSlider key={key} attribute={attribute} value={attribute.value} />
+          <AttributeSlider key={key} attribute={attribute} value={attribute.value} min={attribute.min} />
         ))}
       </div>
     </LoreText>

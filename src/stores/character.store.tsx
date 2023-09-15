@@ -7,12 +7,12 @@ const initialState = {
     name: "",
     race: "",
     attributes: [
-      { name: "health", value: 0, icon: "GiGlassHeart" },
-      { name: "strength", value: 0, icon: "GiBiceps" },
-      { name: "skill", value: 0, icon: "GiSwitchWeapon" },
-      { name: "speed", value: 0, icon: "GiRunningNinja" },
-      { name: "precision", value: 0, icon: "GiConvergenceTarget" },
-      { name: "precision", value: 0, icon: "GiArcheryTarget" },
+      { name: "health", min: 10, value: 0, icon: "GiGlassHeart" },
+      { name: "strength", min: 5, value: 0, icon: "GiBiceps" },
+      { name: "skill", min: 5, value: 0, icon: "GiSwitchWeapon" },
+      { name: "speed", min: 5, value: 0, icon: "GiRunningNinja" },
+      { name: "precision", min: 5, value: 0, icon: "GiConvergenceTarget" },
+      { name: "precision", min: 5, value: 0, icon: "GiArcheryTarget" },
     ],
   },
 };
