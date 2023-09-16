@@ -1,29 +1,26 @@
-import { useState, useEffect } from "react";
-import Button from "./GlobalButton";
-import HeaderIcon from "./global/HeaderIcon";
-import CurrentStep from "./CharacterCreation/CurrentStep";
-import ArrowButton from "./global/ArrowButton";
-import CreateButton from "./CharacterCreation/CreateButton";
-
-type Props = {};
+import { useState, useEffect } from 'react';
+import HeaderIcon from './global/HeaderIcon';
+import CurrentStep from './CharacterCreation/CurrentStep';
+import ArrowButton from './global/ArrowButton';
+import CreateButton from './CharacterCreation/CreateButton';
 
 interface IconMap {
   [key: number]: string;
 }
 
-export default function CharacterCreationForm({}: Props) {
+export default function CharacterCreationForm() {
   const [step, setStep] = useState(0);
 
   const currentIcon: IconMap = {
-    0: "GiMountainRoad",
-    1: "GiGuards",
-    2: "GiFaceToFace",
-    3: "GiPencil",
-    4: "GiFist",
-    5: "GiOpenGate",
-    6: "GiOpenGate",
-    7: "GiOpenGate",
-    8: "GiOpenGate",
+    0: 'GiMountainRoad',
+    1: 'GiGuards',
+    2: 'GiFaceToFace',
+    3: 'GiPencil',
+    4: 'GiFist',
+    5: 'GiOpenGate',
+    6: 'GiOpenGate',
+    7: 'GiOpenGate',
+    8: 'GiOpenGate',
   };
 
   const firstPage = step === 0;
@@ -34,27 +31,45 @@ export default function CharacterCreationForm({}: Props) {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "ArrowLeft" && !firstPage) {
+      if (event.key === 'ArrowLeft' && !firstPage) {
         goBack();
-      } else if (event.key === "ArrowRight" && !lastPage) {
+      } else if (event.key === 'ArrowRight' && !lastPage) {
         goForward();
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [step]);
+  }, [step, firstPage, lastPage]);
 
   return (
     <div className="flex flex-col justify-between w-full h-full">
-      <HeaderIcon name={currentIcon[step]} category="Gi" size="8em" style="text-accent" />
+      <HeaderIcon
+        name={currentIcon[step]}
+        category="Gi"
+        size="8em"
+        style="text-accent"
+      />
       <CurrentStep step={step} />
       <div className="navigation flex p-4">
-        {!firstPage && <ArrowButton direction="Left" iconStyle="text-accent" onClick={goBack} />}
-        {!lastPage && <ArrowButton direction="Right" style="ml-auto" iconStyle="text-accent" onClick={goForward} />}
+        {!firstPage && (
+          <ArrowButton
+            direction="Left"
+            iconStyle="text-accent"
+            onClick={goBack}
+          />
+        )}
+        {!lastPage && (
+          <ArrowButton
+            direction="Right"
+            style="ml-auto"
+            iconStyle="text-accent"
+            onClick={goForward}
+          />
+        )}
       </div>
       {lastPage && <CreateButton />}
     </div>
