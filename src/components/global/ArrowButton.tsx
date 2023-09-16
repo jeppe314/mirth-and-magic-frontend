@@ -1,4 +1,4 @@
-import Icon from './Icon';
+import Icon from './Icon.tsx';
 
 type Props = {
   direction: 'Right' | 'Left' | 'Up' | 'Down';

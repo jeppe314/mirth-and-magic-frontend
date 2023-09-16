@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useUserStore } from '../stores/user.store.tsx';
+import useUserStore from '../stores/user.store.tsx';
 import { useCharacterStore } from '../stores/character.store.tsx';
 import useCharacterCreationStore from '../stores/characterCreation.store.tsx';
 

@@ -1,14 +1,12 @@
-import React, { useState } from "react";
-import BasicInput from "../components/BasicInput";
-import GlobalButton from "../components/GlobalButton";
-import { useUserStore } from "../stores/user.store";
+import { useState } from 'react';
+import BasicInput from '../components/BasicInput.tsx';
+import GlobalButton from '../components/GlobalButton.tsx';
+import useUserStore from '../stores/user.store.tsx';
 
-type Props = {};
-
-export default function WelcomePage({}: Props) {
-  const [name, setName] = useState("");
-  const setUsername = useUserStore((state: any) => state.setUsername);
-  const user = useUserStore((state: any) => state.user);
+export default function WelcomePage() {
+  const [name, setName] = useState('');
+  const setUsername = useUserStore((state) => state.setUsername);
+  const user = useUserStore((state): User => state.user);
 
   const handleSubmit = (e: InputEvent) => {
     e.preventDefault();

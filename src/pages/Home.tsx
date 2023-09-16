@@ -1,12 +1,9 @@
-import CharacterCreationForm from "../components/CharacterCreationForm";
-import LogoutButton from "../components/LogoutButton";
-import { useUserStore } from "../stores/user.store";
-import WelcomePage from "./WelcomePage";
+import CharacterCreationForm from '../components/CharacterCreationForm.tsx';
+import useUserStore from '../stores/user.store.tsx';
+import WelcomePage from './WelcomePage.tsx';
 
-type Props = {};
-
-export default function Home({}: Props) {
-  const storeUser = useUserStore((state: any) => state.user);
+export default function Home() {
+  const storeUser = useUserStore((state): User => state.user);
 
   if (!storeUser.username) {
     return <WelcomePage />;

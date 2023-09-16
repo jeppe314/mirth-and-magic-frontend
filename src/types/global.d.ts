@@ -42,7 +42,7 @@ type Race = 'dwarf' | 'elf' | 'human';
 interface UserStoreType {
   user: User;
   checkUser: (user: object) => Promise<void>;
-  setUsername: (user: object) => Promise<void>;
+  setUsername: (user: object, name: string) => Promise<void>;
   reset: () => Promise<void>;
 }
 interface CharacterStoreType {

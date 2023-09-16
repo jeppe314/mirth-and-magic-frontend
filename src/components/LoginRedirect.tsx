@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import { useUserStore } from "../stores/user.store";
-import { Navigate } from "react-router-dom";
+import { useEffect } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
+import { Navigate } from 'react-router-dom';
+import useUserStore from '../stores/user.store.tsx';
 
 export default function LoginRedirect() {
   const { user } = useAuth0();
@@ -18,7 +18,7 @@ export default function LoginRedirect() {
     };
     // Check if the storeUser object is empty
     if (!storeUser.email) {
-      console.log("fetching user");
+      console.log('fetching user');
       fetchUser();
     }
   }, [storeUser, user, checkUser]);

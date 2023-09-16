@@ -1,13 +1,13 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import route from '../api/user';
+import route from '../api/user.ts';
 
 const initialState = {
   user: {},
   session: {},
 };
 
-export const useUserStore = create<UserStoreType>()(
+const useUserStore = create<UserStoreType>()(
   persist(
     (set) => ({
       ...initialState,
@@ -15,9 +15,9 @@ export const useUserStore = create<UserStoreType>()(
         const { data } = await route.getUser();
         const fetchedUser = data[0];
         if (!fetchedUser) {
-          const { data } = await route.addUser(authUser);
+          const { data: addUserData } = await route.addUser(authUser);
           // If the user doesn't exist in the database, we add them
-          set({ user: data }); // Assuming data contains the newly added user's details
+          set({ user: addUserData }); // Assuming data contains the newly added user's details
           return;
         }
         // If the user exists in the database, we update the store with their details
@@ -40,3 +40,5 @@ export const useUserStore = create<UserStoreType>()(
     },
   ),
 );
+
+export default useUserStore;
