@@ -23,5 +23,8 @@ module.exports = {
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'prettier/prettier': 'error', // Ensures that your code conforms to Prettier formatting
     'max-len': [1, { code: 120 }],
+    'no-undef': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
   },
 };

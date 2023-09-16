@@ -1,9 +1,8 @@
-import React from "react";
-import { Navigate } from "react-router-dom";
-import { useLogout } from "../hooks/useLogout";
-import GlobalButton from "../components/GlobalButton";
+import { Navigate } from 'react-router-dom';
+import useLogout from '../hooks/useLogout.ts';
+import GlobalButton from './GlobalButton.tsx';
 
-const LogoutButton = () => {
+export default function LogoutButton() {
   const { handleLogout, navigate } = useLogout();
 
   return (
@@ -12,6 +11,4 @@ const LogoutButton = () => {
       <GlobalButton text="Log out" onClick={handleLogout} />
     </>
   );
-};
-
-export default LogoutButton;
+}

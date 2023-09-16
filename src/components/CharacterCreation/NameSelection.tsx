@@ -1,8 +1,8 @@
-import BasicInput from "../BasicInput";
-import LoreText from "./LoreText";
-import { useCharacterCreationStore } from "../../stores/characterCreation.store";
+import BasicInput from '../BasicInput.tsx';
+import LoreText from './LoreText.tsx';
+import useCharacterCreationStore from '../../stores/characterCreation.store.tsx';
 
-export default function NameSelection({}) {
+export default function NameSelection() {
   const { updateName, name } = useCharacterCreationStore() as CharacterCreationStoreType;
 
   return (

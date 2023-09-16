@@ -1,13 +1,13 @@
-import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
-import route from "../api/user";
+import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import route from '../api/user';
 
 const initialState = {
   user: {},
   session: {},
 };
 
-export const useUserStore = create(
+export const useUserStore = create<UserStoreType>()(
   persist(
     (set) => ({
       ...initialState,
@@ -35,8 +35,8 @@ export const useUserStore = create(
       reset: () => set(initialState),
     }),
     {
-      name: "user-store",
+      name: 'user-store',
       storage: createJSONStorage(() => sessionStorage), //using sessionstorage, not sure if should use session or local or other?
-    }
-  )
+    },
+  ),
 );

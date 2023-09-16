@@ -3,10 +3,7 @@ import Icon from './Icon.tsx';
 
 type Props = {
   attribute: AttributeDetail;
-  value: number;
-  min: number;
   handleUpdate: (value: number) => void;
-  icon: string;
 };
 
 export default function AttributeSlider({ attribute, handleUpdate }: Props) {

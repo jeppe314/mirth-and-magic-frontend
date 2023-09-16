@@ -1,6 +1,6 @@
-import AttributeSlider from '../global/AttributeSlider';
+import AttributeSlider from '../global/AttributeSlider.tsx';
 import useCharacterCreationStore from '../../stores/characterCreation.store.tsx';
-import LoreText from './LoreText';
+import LoreText from './LoreText.tsx';
 
 export default function AttributeSelection() {
   const attributes = useCharacterCreationStore((state) => state.attributes);
