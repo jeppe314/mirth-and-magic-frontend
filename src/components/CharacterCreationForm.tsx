@@ -3,6 +3,7 @@ import Button from "./GlobalButton";
 import HeaderIcon from "./global/HeaderIcon";
 import CurrentStep from "./CharacterCreation/CurrentStep";
 import ArrowButton from "./global/ArrowButton";
+import CreateButton from "./CharacterCreation/CreateButton";
 
 type Props = {};
 
@@ -12,10 +13,6 @@ interface IconMap {
 
 export default function CharacterCreationForm({}: Props) {
   const [step, setStep] = useState(0);
-
-  const handleSubmit = () => {
-    console.log("submit");
-  };
 
   const currentIcon: IconMap = {
     0: "GiMountainRoad",
@@ -28,15 +25,19 @@ export default function CharacterCreationForm({}: Props) {
     7: "GiOpenGate",
     8: "GiOpenGate",
   };
-  const validBack = step > 0;
-  const validForward = step < 7;
+
+  const firstPage = step === 0;
+  const lastPage = step === 7;
+
+  const goForward = () => setStep((prevStep) => prevStep + 1);
+  const goBack = () => setStep((prevStep) => prevStep - 1);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "ArrowLeft" && validBack) {
-        setStep((prevStep) => prevStep - 1);
-      } else if (event.key === "ArrowRight" && validForward) {
-        setStep((prevStep) => prevStep + 1);
+      if (event.key === "ArrowLeft" && !firstPage) {
+        goBack();
+      } else if (event.key === "ArrowRight" && !lastPage) {
+        goForward();
       }
     };
 
@@ -52,19 +53,10 @@ export default function CharacterCreationForm({}: Props) {
       <HeaderIcon name={currentIcon[step]} category="Gi" size="8em" style="text-accent" />
       <CurrentStep step={step} />
       <div className="navigation flex p-4">
-        {validBack && (
-          <ArrowButton direction="Left" iconStyle="text-accent" onClick={() => setStep((prevStep) => prevStep - 1)} />
-        )}
-        {validForward && (
-          <ArrowButton
-            direction="Right"
-            style="ml-auto"
-            iconStyle="text-accent"
-            onClick={() => setStep((prevStep) => prevStep + 1)}
-          />
-        )}
+        {!firstPage && <ArrowButton direction="Left" iconStyle="text-accent" onClick={goBack} />}
+        {!lastPage && <ArrowButton direction="Right" style="ml-auto" iconStyle="text-accent" onClick={goForward} />}
       </div>
-      {step === 7 && <Button text="Slutför" color="accent" textColor="light" onClick={() => handleSubmit} />}
+      {lastPage && <CreateButton />}
     </div>
   );
 }

@@ -47,9 +47,6 @@ interface UserStoreType {
 }
 interface CharacterStoreType {
   character: CharacterType;
-  characterCreation: CharacterCreationType;
-  updateName: (name: string) => void;
-  updateRace: (race: string) => void;
   updateAttribute: (attribute: string, value: number) => void;
   addCharacter: (race: string) => Promise<void>;
   getCharacter: (race: string) => Promise<void>;
@@ -68,6 +65,7 @@ interface CharacterCreationStoreType {
   name: string;
   race: string;
   attributes: CharacterCreationAttributes;
+  distributablePoints: number;
   updateName: (name: string) => void;
   updateRace: (race: string) => void;
   updateAttribute: (attributeName: string, value: number) => void;
