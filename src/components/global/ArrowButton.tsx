@@ -1,16 +1,16 @@
-import Icon from "./Icon";
+import Icon from './Icon';
 
 type Props = {
-  direction: "Right" | "Left" | "Up" | "Down";
-  style?: string;
+  direction: 'Right' | 'Left' | 'Up' | 'Down';
+  classes?: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   iconStyle: string;
 };
 
-export default function ArrowButton({ direction, style, onClick, iconStyle }: Props) {
+export default function ArrowButton({ direction, classes, onClick, iconStyle }: Props) {
   const icon = `FaArrow${direction}`;
   return (
-    <button className={style} onClick={onClick}>
+    <button className={classes} onClick={onClick}>
       <Icon name={icon} size="1.5em" style={iconStyle} />
     </button>
   );

@@ -1,23 +1,23 @@
-import React from "react";
-import * as FaIcons from "react-icons/fa";
-import * as GiIcons from "react-icons/gi";
+import React from 'react';
+import * as FaIcons from 'react-icons/fa';
+import * as GiIcons from 'react-icons/gi';
 
-type IconSets = "Fa" | "Gi";
+type IconSets = 'Fa' | 'Gi';
 type IconProps = {
   name: string;
   category?: IconSets;
   size?: string | number;
-  style?: string;
+  classes?: string;
 };
 
-const Icon: React.FC<IconProps> = ({ name, category = "Fa", size = "1em", style = "text-primary" }) => {
+const Icon: React.FC<IconProps> = ({ name, category = 'Fa', size = '1em', classes = 'text-primary' }) => {
   let IconComponent;
 
   switch (category) {
-    case "Fa":
+    case 'Fa':
       IconComponent = FaIcons[name];
       break;
-    case "Gi":
+    case 'Gi':
       IconComponent = GiIcons[name];
       break;
     default:
@@ -30,7 +30,7 @@ const Icon: React.FC<IconProps> = ({ name, category = "Fa", size = "1em", style 
     return null;
   }
 
-  return <IconComponent size={size} className={style} />;
+  return <IconComponent size={size} className={classes} />;
 };
 
 export default Icon;

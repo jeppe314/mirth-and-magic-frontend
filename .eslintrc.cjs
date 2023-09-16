@@ -10,6 +10,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'prettier',
   ],
+  plugins: ['@typescript-eslint'],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   rules: {
@@ -19,10 +20,8 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['error'], // Warns if you have any unused variables in your TypeScript files
     'react/react-in-jsx-scope': 'off',
     'react/jsx-uses-react': 'off',
-    'react/jsx-filename-extension': [
-      2,
-      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
-    ],
+    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'prettier/prettier': 'error', // Ensures that your code conforms to Prettier formatting
+    'max-len': [1, { code: 120 }],
   },
 };

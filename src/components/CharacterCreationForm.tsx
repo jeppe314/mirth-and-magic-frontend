@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import HeaderIcon from './global/HeaderIcon';
-import CurrentStep from './CharacterCreation/CurrentStep';
-import ArrowButton from './global/ArrowButton';
-import CreateButton from './CharacterCreation/CreateButton';
+import HeaderIcon from './global/HeaderIcon.tsx';
+import CurrentStep from './CharacterCreation/CurrentStep.tsx';
+import ArrowButton from './global/ArrowButton.tsx';
+import CreateButton from './CharacterCreation/CreateButton.tsx';
 
 interface IconMap {
   [key: number]: string;
@@ -47,29 +47,11 @@ export default function CharacterCreationForm() {
 
   return (
     <div className="flex flex-col justify-between w-full h-full">
-      <HeaderIcon
-        name={currentIcon[step]}
-        category="Gi"
-        size="8em"
-        style="text-accent"
-      />
+      <HeaderIcon name={currentIcon[step]} category="Gi" size="8em" classes="text-accent" />
       <CurrentStep step={step} />
       <div className="navigation flex p-4">
-        {!firstPage && (
-          <ArrowButton
-            direction="Left"
-            iconStyle="text-accent"
-            onClick={goBack}
-          />
-        )}
-        {!lastPage && (
-          <ArrowButton
-            direction="Right"
-            style="ml-auto"
-            iconStyle="text-accent"
-            onClick={goForward}
-          />
-        )}
+        {!firstPage && <ArrowButton direction="Left" iconStyle="text-accent" onClick={goBack} />}
+        {!lastPage && <ArrowButton direction="Right" classes="ml-auto" iconStyle="text-accent" onClick={goForward} />}
       </div>
       {lastPage && <CreateButton />}
     </div>
