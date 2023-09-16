@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
-import Icon from "./Icon";
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+
 type SliderProps = {
   min: number;
   max: number;
@@ -7,7 +7,7 @@ type SliderProps = {
   updateValue: (value: number) => void;
 };
 
-const IconSlider: React.FC<SliderProps> = ({ min, max, value, updateValue }) => {
+export default function IconSlider({ min, max, value, updateValue }: SliderProps) {
   const [dragging, setDragging] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -27,50 +27,38 @@ const IconSlider: React.FC<SliderProps> = ({ min, max, value, updateValue }) => 
         updateValue(Math.round(Math.min(Math.max(newValue, min), max)));
       }
     },
-    [dragging, min, max, updateValue]
+    [dragging, min, max, updateValue],
   );
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       handleMove(e.clientX);
     },
-    [handleMove]
+    [handleMove],
   );
 
   const handleTouchMove = useCallback(
     (e: React.TouchEvent<HTMLDivElement>) => {
       handleMove(e.touches[0].clientX);
     },
-    [handleMove]
+    [handleMove],
   );
 
   useEffect(() => {
-    window.addEventListener("mouseup", handleEnd);
-    window.addEventListener("touchend", handleEnd);
+    window.addEventListener('mouseup', handleEnd);
+    window.addEventListener('touchend', handleEnd);
 
     return () => {
-      window.removeEventListener("mouseup", handleEnd);
-      window.removeEventListener("touchend", handleEnd);
+      window.removeEventListener('mouseup', handleEnd);
+      window.removeEventListener('touchend', handleEnd);
     };
   }, [handleEnd]);
 
   return (
     <div ref={sliderRef} className="slider-container relative w-full h-10 rounded-full " onMouseMove={handleMouseMove}>
-      <div
-        className="bg-accent h-full relative rounded-r-md"
-        style={{ width: `${((value - min) / (max - min)) * 100}%` }}
-      >
-        <div
-          className="absolute top-0 right-0 h-full w-[32px] flex justify-center items-center cursor-pointer   "
-          onMouseDown={handleStart}
-          onTouchStart={handleStart}
-          onTouchMove={handleTouchMove}
-        >
-          {/* <Icon category="Gi" name="GiBiceps" style="w-full h-full p-1" /> */}
-        </div>
+      <div className="bg-accent h-full relative rounded-r-md" style={{ width: `${((value - min) / (max - min)) * 100}%` }}>
+        <div className="absolute top-0 right-0 h-full w-[32px] flex justify-center items-center cursor-pointer" onMouseDown={handleStart} onTouchStart={handleStart} onTouchMove={handleTouchMove}></div>
       </div>
     </div>
   );
-};
-
-export default IconSlider;
+}

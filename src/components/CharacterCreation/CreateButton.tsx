@@ -1,11 +1,9 @@
-import Button from "../GlobalButton";
+import Button from '../GlobalButton.tsx';
 
-type Props = {};
-
-export default function CreateButton({}: Props) {
+export default function CreateButton() {
   const handleSubmit = () => {
-    console.log("submit");
+    console.log('submit');
   };
 
-  return <Button text="Slutför" color="accent" textColor="light" onClick={() => handleSubmit} />;
+  return <Button text="Slutför" color="accent" textColor="light" onClick={handleSubmit} />;
 }

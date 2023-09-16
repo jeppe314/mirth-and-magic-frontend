@@ -1,22 +1,22 @@
 // characterCreation.store.js
 
-import { create } from "zustand";
-import { persist, devtools, createJSONStorage } from "zustand/middleware";
+import { create } from 'zustand';
+import { persist, devtools, createJSONStorage } from 'zustand/middleware';
 
 const initialState = {
-  name: "",
-  race: "",
+  name: '',
+  race: '',
   attributes: {
-    health: { min: 5, value: 7, icon: "GiGlassHeart" },
-    strength: { min: 5, value: 7, icon: "GiBiceps" },
-    skill: { min: 5, value: 7, icon: "GiSwitchWeapon" },
-    speed: { min: 5, value: 7, icon: "GiRunningNinja" },
-    precision: { min: 5, value: 7, icon: "GiArcheryTarget" },
+    health: { min: 5, value: 7, icon: 'GiGlassHeart' },
+    strength: { min: 5, value: 7, icon: 'GiBiceps' },
+    skill: { min: 5, value: 7, icon: 'GiSwitchWeapon' },
+    speed: { min: 5, value: 7, icon: 'GiRunningNinja' },
+    precision: { min: 5, value: 7, icon: 'GiArcheryTarget' },
   },
   distributablePoints: 10,
 };
 
-export const useCharacterCreationStore = create(
+const useCharacterCreationStore = create<CharacterCreationStoreType>()(
   devtools(
     persist(
       (set) => ({
@@ -32,7 +32,7 @@ export const useCharacterCreationStore = create(
                   ...state.attributes,
                   [attributeName]: {
                     ...state.attributes[attributeName],
-                    value: value,
+                    value,
                   },
                 },
                 distributablePoints: state.distributablePoints - difference,
@@ -44,9 +44,11 @@ export const useCharacterCreationStore = create(
         reset: () => set(initialState),
       }),
       {
-        name: "character-creation-store",
+        name: 'character-creation-store',
         storage: createJSONStorage(() => sessionStorage),
-      }
-    )
-  )
+      },
+    ),
+  ),
 );
+
+export default useCharacterCreationStore;

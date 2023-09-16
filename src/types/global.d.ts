@@ -7,20 +7,20 @@ interface User {
   picture?: string;
 }
 
-interface CharacterType {
-  id?: string;
-  name?: string;
-  race?: string;
-  attributes?: AttributesType;
-  inventory?: Array;
-}
-
 interface AttributesType {
   health?: number;
   strength?: number;
   skill?: number;
   speed?: number;
   precision?: number;
+}
+
+interface CharacterType {
+  id?: string;
+  name?: string;
+  race?: string;
+  attributes?: AttributesType;
+  inventory?: Array;
 }
 
 interface AttributeDetail {
@@ -35,9 +35,9 @@ interface CharacterCreationType {
   attributes: AttributesType;
 }
 
-type Race = "dwarf" | "elf" | "human";
+type Race = 'dwarf' | 'elf' | 'human';
 
-//--------------------------------// STATE TYPES //----------------------------//
+// --------------------------------// STATE TYPES //---------------------------- //
 
 interface UserStoreType {
   user: User;
@@ -61,7 +61,7 @@ interface CharacterCreationAttributes {
   precision: AttributeDetail;
 }
 
-interface CharacterCreationStoreType {
+type CharacterCreationStoreType = {
   name: string;
   race: string;
   attributes: CharacterCreationAttributes;
@@ -70,6 +70,6 @@ interface CharacterCreationStoreType {
   updateRace: (race: string) => void;
   updateAttribute: (attributeName: string, value: number) => void;
   reset: () => void;
-}
+};
 
-//-----------------------// OTHER TYPES //-----------------------------//
+// -----------------------// OTHER TYPES //----------------------------- //
