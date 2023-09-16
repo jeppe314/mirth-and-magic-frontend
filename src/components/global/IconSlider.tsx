@@ -55,18 +55,18 @@ const IconSlider: React.FC<SliderProps> = ({ min, max, value, updateValue }) => 
   }, [handleEnd]);
 
   return (
-    <div ref={sliderRef} className="slider-container relative w-full h-8 rounded-full " onMouseMove={handleMouseMove}>
+    <div ref={sliderRef} className="slider-container relative w-full h-10 rounded-full " onMouseMove={handleMouseMove}>
       <div
-        className="bg-accent h-full relative rounded-r-full"
+        className="bg-accent h-full relative rounded-r-md"
         style={{ width: `${((value - min) / (max - min)) * 100}%` }}
       >
         <div
-          className="absolute top-0 right-0 h-full w-[32px] flex justify-center items-center cursor-pointer rounded-full bg-white border-2 border-accent"
+          className="absolute top-0 right-0 h-full w-[32px] flex justify-center items-center cursor-pointer   "
           onMouseDown={handleStart}
           onTouchStart={handleStart}
           onTouchMove={handleTouchMove}
         >
-          <Icon category="Gi" name="GiBiceps" style="w-full h-full p-1" />
+          {/* <Icon category="Gi" name="GiBiceps" style="w-full h-full p-1" /> */}
         </div>
       </div>
     </div>

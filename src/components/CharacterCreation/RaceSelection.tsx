@@ -1,11 +1,10 @@
 import LoreText from "./LoreText";
-import { useCharacterStore } from "../../stores/character.store";
 import Divider from "../global/Divider";
-import { FaLinkedin } from "react-icons/fa";
+import { useCharacterCreationStore } from "../../stores/characterCreation.store";
 
 const RaceSelection: React.FC<RaceSelectionProps> = ({}) => {
-  const race = useCharacterStore((state) => state.characterCreation.race);
-  const updateRace = useCharacterStore((state) => state.updateRace);
+  const race = useCharacterCreationStore((state) => state.race);
+  const updateRace = useCharacterCreationStore((state) => state.updateRace);
 
   const selected = "bg-selected rounded";
 

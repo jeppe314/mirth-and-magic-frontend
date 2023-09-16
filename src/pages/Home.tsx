@@ -13,8 +13,8 @@ export default function Home({}: Props) {
   }
 
   return (
-    <div className="h-full w-full flex flex-col justify-between items-center font-sans">
-      <CharacterCreationForm />
-    </div>
+    // <div className="h-full w-full flex flex-col justify-between items-center font-sans">
+    <CharacterCreationForm />
+    // </div>
   );
 }

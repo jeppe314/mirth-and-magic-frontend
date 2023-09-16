@@ -21,8 +21,12 @@ interface AttributesType {
   skill?: number;
   speed?: number;
   precision?: number;
-  luck?: number;
-  intelligence?: number;
+}
+
+interface AttributeDetail {
+  min: number;
+  value: number;
+  icon: string;
 }
 
 interface CharacterCreationType {
@@ -50,6 +54,24 @@ interface CharacterStoreType {
   addCharacter: (race: string) => Promise<void>;
   getCharacter: (race: string) => Promise<void>;
   reset: () => Promise<void>;
+}
+
+interface CharacterCreationAttributes {
+  health: AttributeDetail;
+  strength: AttributeDetail;
+  skill: AttributeDetail;
+  speed: AttributeDetail;
+  precision: AttributeDetail;
+}
+
+interface CharacterCreationStoreType {
+  name: string;
+  race: string;
+  attributes: CharacterCreationAttributes;
+  updateName: (name: string) => void;
+  updateRace: (race: string) => void;
+  updateAttribute: (attributeName: string, value: number) => void;
+  reset: () => void;
 }
 
 //-----------------------// OTHER TYPES //-----------------------------//

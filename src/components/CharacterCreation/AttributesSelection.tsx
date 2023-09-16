@@ -1,22 +1,18 @@
-import React from "react";
-import LoreText from "./LoreText";
-import { useCharacterStore } from "../../stores/character.store";
-import BasicInput from "../BasicInput";
 import AttributeSlider from "../global/AttributeSlider";
+import { useCharacterCreationStore } from "../../stores/characterCreation.store";
+import LoreText from "./LoreText";
 
-type Props = {};
-
-export default function AttributesSelection({}: Props) {
-  const { attributes } = useCharacterStore((state) => state.characterCreation);
-  console.log("🚀 ~ file: AttributesSelection.tsx:10 ~ AttributesSelection ~ attributes:", attributes);
+export default function AttributeSelection() {
+  const attributes = useCharacterCreationStore((state) => state.attributes);
+  const updateAttribute = useCharacterCreationStore((state) => state.updateAttribute);
+  const distributablePoints = useCharacterCreationStore((state) => state.distributablePoints);
 
   return (
     <LoreText heading="At the gates...">
-      <div className="w-full flex flex-col gap-2 p-2">
-        {Object.entries(attributes).map(([key, attribute]) => (
-          <AttributeSlider key={key} attribute={attribute} value={attribute.value} min={attribute.min} />
-        ))}
-      </div>
+      {Object.entries(attributes).map(([key, attr]) => (
+        <AttributeSlider key={key} attribute={attr} handleUpdate={(value) => updateAttribute(key, value)} />
+      ))}
+      <div>Points left to distribute: {distributablePoints}</div>
     </LoreText>
   );
 }

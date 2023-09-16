@@ -1,37 +1,26 @@
-import { useEffect } from "react";
 import RaceSelection from "./RaceSelection";
 import NameSelection from "./NameSelection";
 import AttributesSelection from "./AttributesSelection";
-import { useCharacterStore } from "../../stores/character.store";
 import LoreText from "./LoreText";
-import { BorgulfBjorn1, LoneWanderer } from "../../lore/lore";
+import { BorgulfBjorn1, BorgulfBjorn2, BorgulfBjorn3,BorgulfBjorn4, LoneWanderer } from "../../lore/lore";
+
 interface Props {
   step: number;
 }
 
-const CurrentStep: React.FC<Props> = ({ step = 1 }) => {
-  const createCharacter = useCharacterStore((state: CharacterStoreType) => state.characterCreation);
-  const { updateName, updateRace } = useCharacterStore() as CharacterStoreType;
+const steps = [
+  { component: <LoreText heading="A lone wanderer...">{LoneWanderer}</LoreText> },
+  { component: <LoreText heading="The outpost...">{BorgulfBjorn1}</LoreText> },
+  { component: <RaceSelection /> },
+  { component: <LoreText heading="The meeting...">{BorgulfBjorn2}</LoreText> },
+  { component: <LoreText heading="The meeting...">{BorgulfBjorn3}</LoreText> },
+  { component: <LoreText heading="The meeting...">{BorgulfBjorn4}</LoreText> },
+  { component: <NameSelection /> },
+  { component: <AttributesSelection /> },
+];
 
-  useEffect(() => {
-    console.log("effect");
-    console.log(createCharacter);
-  }, [createCharacter]);
-
-  switch (step) {
-    case 0:
-      return <LoreText heading="A lone wanderer...">{LoneWanderer}</LoreText>;
-    case 1:
-      return <LoreText heading="The outpost...">{BorgulfBjorn1}</LoreText>;
-    case 2:
-      return <RaceSelection />;
-    case 2:
-      return <NameSelection value={createCharacter.name} setName={updateName} />;
-    case 3:
-      return <AttributesSelection />; 
-    default:
-      return null;
-  }
+const CurrentStep: React.FC<Props> = ({ step = 0 }) => {
+  return steps[step]?.component || <div>There is nothing on this page =/</div>;
 };
 
 export default CurrentStep;
