@@ -3,18 +3,20 @@ import Button from "./GlobalButton";
 import HeaderIcon from "./global/HeaderIcon";
 import CurrentStep from "./CharacterCreation/CurrentStep";
 import ArrowButton from "./global/ArrowButton";
+import { useCharacterCreationStore } from "../stores/characterCreation.store";
 
-type Props = {};
 
 interface IconMap {
   [key: number]: string;
 }
 
-export default function CharacterCreationForm({}: Props) {
+export default function CharacterCreationForm() {
   const [step, setStep] = useState(0);
+  const submit = useCharacterCreationStore(state => state.submitCharacter)
 
   const handleSubmit = () => {
     console.log("submit");
+    submit()
   };
 
   const currentIcon: IconMap = {
@@ -64,7 +66,7 @@ export default function CharacterCreationForm({}: Props) {
           />
         )}
       </div>
-      {step === 7 && <Button text="Slutför" color="accent" textColor="light" onClick={() => handleSubmit} />}
+      {step === 7 && <Button text="Slutför" color="accent" textColor="light" onClick={handleSubmit} />}
     </div>
   );
 }

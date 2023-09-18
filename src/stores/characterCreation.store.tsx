@@ -1,7 +1,6 @@
-// characterCreation.store.js
-
 import { create } from "zustand";
 import { persist, devtools, createJSONStorage } from "zustand/middleware";
+import route from "../api/character.creation.ts"
 
 const initialState = {
   name: "",
@@ -19,7 +18,7 @@ const initialState = {
 export const useCharacterCreationStore = create(
   devtools(
     persist(
-      (set) => ({
+      (set, get) => ({
         ...initialState,
         updateName: (name: string) => set((state) => ({ name })),
         updateRace: (race: string) => set((state) => ({ race })),
@@ -40,6 +39,25 @@ export const useCharacterCreationStore = create(
             }
             return state; // return the current state if the condition is not met
           });
+        },
+        submitCharacter: async () => {
+          const currentState:CharacterCreationStoreType = get()
+
+          const simpleAttributes = Object.keys(currentState.attributes).reduce((acc, key) => {
+            acc[key] = currentState.attributes[key].value;
+            return acc;
+          }, {});
+          
+          // Construct the character object to submit
+          const character = {
+            name: currentState.name,
+            race: currentState.race,
+            attributes: simpleAttributes,
+          };
+          
+          console.log(character);
+          await route.submitCharacter(character);  
+
         },
         reset: () => set(initialState),
       }),
