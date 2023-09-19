@@ -15,7 +15,7 @@ const initialState = {
   distributablePoints: 10,
 };
 
-export const useCharacterCreationStore = create(
+export const useCharacterCreationStore = create<CharacterCreationStoreType>()(
   devtools(
     persist(
       (set, get) => ({
@@ -40,7 +40,7 @@ export const useCharacterCreationStore = create(
             return state; // return the current state if the condition is not met
           });
         },
-        submitCharacter: async () => {
+        submitCharacter: async (userId:number) => {
           const currentState:CharacterCreationStoreType = get()
 
           const simpleAttributes = Object.keys(currentState.attributes).reduce((acc, key) => {
@@ -54,9 +54,11 @@ export const useCharacterCreationStore = create(
             race: currentState.race,
             attributes: simpleAttributes,
           };
-          
-          console.log(character);
-          await route.submitCharacter(character);  
+          const payload = {
+            userId,
+            character
+          }
+          await route.submitCharacter(payload);  
 
         },
         reset: () => set(initialState),

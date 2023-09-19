@@ -1,5 +1,9 @@
 import axiosInstance from "../interceptors/interceptors";
-const submitCharacter = (character: CharacterCreationType) => axiosInstance.post("/character", character);
+interface submitCharacterPayload {
+  character: CharacterCreationType,
+  userId: number
+}
+const submitCharacter = (payload: submitCharacterPayload) => axiosInstance.post("/character", payload);
 
 export default {
   submitCharacter,

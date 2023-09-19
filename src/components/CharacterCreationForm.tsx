@@ -4,7 +4,7 @@ import HeaderIcon from "./global/HeaderIcon";
 import CurrentStep from "./CharacterCreation/CurrentStep";
 import ArrowButton from "./global/ArrowButton";
 import { useCharacterCreationStore } from "../stores/characterCreation.store";
-
+import { useUserStore } from "../stores/user.store";
 
 interface IconMap {
   [key: number]: string;
@@ -13,10 +13,12 @@ interface IconMap {
 export default function CharacterCreationForm() {
   const [step, setStep] = useState(0);
   const submit = useCharacterCreationStore(state => state.submitCharacter)
+  const userId:number = useUserStore<Number>(state => state.user.id)
 
   const handleSubmit = () => {
     console.log("submit");
-    submit()
+    console.log(userId)
+    submit(userId)
   };
 
   const currentIcon: IconMap = {

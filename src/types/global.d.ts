@@ -29,6 +29,7 @@ interface AttributeDetail {
   icon: string;
 }
 
+
 interface CharacterCreationType {
   name: string;
   race: string;
@@ -71,6 +72,7 @@ interface CharacterCreationStoreType {
   updateName: (name: string) => void;
   updateRace: (race: string) => void;
   updateAttribute: (attributeName: string, value: number) => void;
+  submitCharacter: (userId: number) => Promise<void>;
   reset: () => void;
 }
 
