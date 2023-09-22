@@ -1,20 +1,18 @@
-import CharacterCreationForm from "../components/CharacterCreationForm";
-import LogoutButton from "../components/LogoutButton";
 import { useUserStore } from "../stores/user.store";
-import WelcomePage from "./WelcomePage";
 
-type Props = {};
-
-export default function Home({}: Props) {
+export default function Home() {
   const storeUser = useUserStore((state: any) => state.user);
 
   if (!storeUser.username) {
-    return <WelcomePage />;
+    // return <WelcomePage />;
   }
 
   return (
     // <div className="h-full w-full flex flex-col justify-between items-center font-sans">
-    <CharacterCreationForm />
+    // <CharacterCreationForm />
+    <div>
+      HOOOME
+    </div>
     // </div>
   );
 }

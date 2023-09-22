@@ -2,6 +2,8 @@
 
 import { create } from "zustand";
 import { persist, devtools, createJSONStorage } from "zustand/middleware";
+import route from "../api/character";
+
 
 const initialCharacterState = {
   character: {},
@@ -10,13 +12,11 @@ const initialCharacterState = {
 export const useCharacterStore = create(
   devtools(
     persist(
-      (set) => ({
+      (set, get) => ({
         ...initialCharacterState,
-        addCharacter: (character) => {
-          console.log("addCharacter");
-        },
-        getCharacter: (character) => {
-          console.log("getCharacter");
+        getCharacterByUserId: async (userId:number) => {
+          const {data} = await route.getCharacterByUserId(userId)
+          set({character: data})
         },
         reset: () => set(initialCharacterState),
       }),
