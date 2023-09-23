@@ -1,9 +1,8 @@
 import React from "react";
 import { useCharacterStore } from "../stores/character.store";
 
-type Props = {};
 
-export default function Character({}: Props) {
+export default function Character() {
   const strength = useCharacterStore((state) => state.strength);
   const add = useCharacterStore((state) => state.addStr);
   const all = useCharacterStore();

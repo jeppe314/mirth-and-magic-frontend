@@ -13,7 +13,6 @@ export const useLogout = () => {
   const resetCharacterCreationStore = useCharacterCreationStore((state) => state.reset);
 
   const handleLogout = () => {
-    console.log("logging out")
     logout();
     setNavigate(true);
     resetUserStore();

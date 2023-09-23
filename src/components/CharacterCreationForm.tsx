@@ -5,6 +5,7 @@ import CurrentStep from "./CharacterCreation/CurrentStep";
 import ArrowButton from "./global/ArrowButton";
 import { useCharacterCreationStore } from "../stores/characterCreation.store";
 import { useUserStore } from "../stores/user.store";
+import { useCharacterStore } from "../stores/character.store";
 import { Navigate } from "react-router-dom";
 
 interface IconMap {
@@ -16,15 +17,14 @@ type navPathType = null | string
 export default function CharacterCreationForm() {
   const [navigationPath, setNavigationPath] = useState<navPathType>(null)
   const [step, setStep] = useState(0);
+  const setCharacter = useCharacterStore(state => state.setCharacter)
   const submit = useCharacterCreationStore(state => state.submitCharacter)
   const userId:number = useUserStore<Number>(state => state.user.id)
 
-  const handleSubmit = () => {
-    console.log("submit");
-    console.log(userId)
-    submit(userId)
-    console.log("navigating to home")
-    setNavigationPath("/")
+  const handleSubmit = async () => {
+    const char = await submit(userId) // submits character to db
+    setCharacter(char) // sets character to store
+    setNavigationPath("/") // navigates user to home page
   };
 
   const currentIcon: IconMap = {

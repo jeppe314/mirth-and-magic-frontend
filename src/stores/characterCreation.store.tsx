@@ -58,11 +58,11 @@ export const useCharacterCreationStore = create<CharacterCreationStoreType>()(
             userId,
             character
           }
-          await route.submitCharacter(payload);  
+          const {data} = await route.submitCharacter(payload);  
+          return data
 
         },
         reset: () => {
-          console.log("resetting charcreate")
           set(initialState)
         }
       }),

@@ -1,4 +1,4 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState, useRef} from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useUserStore } from "../stores/user.store";
 import { useCharacterStore } from "../stores/character.store";
@@ -7,6 +7,7 @@ import { Navigate } from "react-router-dom";
 type navPath = null | string
 
 export default function LoginRedirect() {
+  const hasRun = useRef(false); // <-- This ref will track if the effect has been executed
   const { user, loading } = useAuth0();
   const [navigationPath, setNavigationPath] = useState<navPath>(null);
 
@@ -21,7 +22,7 @@ export default function LoginRedirect() {
   } = useCharacterStore();
 
   useEffect(() => {
-    console.log("effect");
+    if (hasRun.current) return; // <-- Return early if the effect has already been executed
 
     const performCheck = async () => {
       if (user && !loading) {
@@ -35,6 +36,7 @@ export default function LoginRedirect() {
       }
     };
     performCheck();
+    hasRun.current = true; // <-- Mark the effect as executed
 
   }, [user, loading]);
 
