@@ -18,10 +18,11 @@ export const useUserStore = create(
           const { data } = await route.addUser(authUser);
           // If the user doesn't exist in the database, we add them
           set({ user: data }); // Assuming data contains the newly added user's details
-          return;
+          return data
         }
         // If the user exists in the database, we update the store with their details
         set({ user: fetchedUser });
+        return fetchedUser
       },
       setUsername: async (sub: string, username: string) => {
         const payload = { username, sub };

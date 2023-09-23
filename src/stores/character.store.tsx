@@ -16,7 +16,9 @@ export const useCharacterStore = create(
         ...initialCharacterState,
         getCharacterByUserId: async (userId:number) => {
           const {data} = await route.getCharacterByUserId(userId)
+          console.log("🚀 ~ file: character.store.tsx:19 ~ getCharacterByUserId: ~ data:", data)
           set({character: data})
+          return data
         },
         reset: () => set(initialCharacterState),
       }),

@@ -1,11 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState} from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useUserStore } from "../stores/user.store";
 import { useCharacterStore } from "../stores/character.store";
 import { Navigate } from "react-router-dom";
 
+type navPath = null | string
+
 export default function LoginRedirect() {
-  const { user } = useAuth0();
+  const { user, loading } = useAuth0();
+  const [navigationPath, setNavigationPath] = useState<navPath>(null);
 
   const {
     user: storeUser,
@@ -17,39 +20,39 @@ export default function LoginRedirect() {
     getCharacterByUserId
   } = useCharacterStore();
 
-  // Fetch the user data
   useEffect(() => {
-    if (!user || storeUser.email) return;  // Return early if no user or if user is already fetched
+    console.log("effect");
 
-    const fetchUserData = async () => {
-      const payload = {
-        email: user.email,
-        sub: user.sub,
-      };
-      await checkUser(payload);
+    const performCheck = async () => {
+      if (user && !loading) {
+        const fetchedUser = await fetchUserData(); // Ensure you await here
+
+          const fetchedCharacter = await fetchCharacterData(fetchedUser.id);
+ 
+          navigate(fetchedUser, fetchedCharacter)
+      } else {
+        return
+      }
     };
+    performCheck();
 
-    fetchUserData();
+  }, [user, loading]);
 
-  }, [user, checkUser]);
+  const fetchUserData = async () => await checkUser(user);
+  const fetchCharacterData = async (id:number) => await getCharacterByUserId(id)
+  
 
-  // Fetch the character data after user is fetched
-  useEffect(() => {
-    if (!storeUser.id) return; // Return early if no storeUser.id
-
-    const fetchCharacterData = async (userId:number) => {
-      await getCharacterByUserId(userId)
-    };
-
-    fetchCharacterData(storeUser.id);
-
-  }, [storeUser, getCharacterByUserId]);
-
-  if (storeUser.email && storeCharacter.name) {
-    return <Navigate to="/" />;
-  } else if (storeUser.email) {
-    return <Navigate to="../create-character" />;
+  const navigate = (user:User, character:CharacterType) => {
+    if (user.id && character.id) {
+      setNavigationPath("/")
+    }
+    if (user.id && !character.id) {
+      setNavigationPath("../create-character")
+    }
   }
 
-  return <div className="bg-pink-400">LoginRedirect LOADING...</div>;
+  if (navigationPath) {
+    return <Navigate to={navigationPath} />; // <-- Return Navigate component with the set path
+  }
+  return <div className="flex w-full h-full justify-center items-center text-2xl animate-ping">Loadiiiiing redirect...</div>;
 }

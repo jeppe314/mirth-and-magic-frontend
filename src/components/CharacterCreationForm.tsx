@@ -5,12 +5,16 @@ import CurrentStep from "./CharacterCreation/CurrentStep";
 import ArrowButton from "./global/ArrowButton";
 import { useCharacterCreationStore } from "../stores/characterCreation.store";
 import { useUserStore } from "../stores/user.store";
+import { Navigate } from "react-router-dom";
 
 interface IconMap {
   [key: number]: string;
 }
+type navPathType = null | string
+
 
 export default function CharacterCreationForm() {
+  const [navigationPath, setNavigationPath] = useState<navPathType>(null)
   const [step, setStep] = useState(0);
   const submit = useCharacterCreationStore(state => state.submitCharacter)
   const userId:number = useUserStore<Number>(state => state.user.id)
@@ -19,6 +23,8 @@ export default function CharacterCreationForm() {
     console.log("submit");
     console.log(userId)
     submit(userId)
+    console.log("navigating to home")
+    setNavigationPath("/")
   };
 
   const currentIcon: IconMap = {
@@ -51,7 +57,8 @@ export default function CharacterCreationForm() {
     };
   }, [step]);
 
-  return (
+  return navigationPath ? <Navigate to={navigationPath} /> :
+ (
     <div className="flex flex-col justify-between w-full h-full">
       <HeaderIcon name={currentIcon[step]} category="Gi" size="8em" style="text-accent" />
       <CurrentStep step={step} />
