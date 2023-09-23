@@ -10,16 +10,13 @@ const override: CSSProperties = {
 export default function Loading() {
   const color = "#A3B18A";
   return (
-    <div>
-      Loading
-      <BeatLoader
-        color={color}
-        loading={true}
-        cssOverride={override}
-        size={50}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      />
-    </div>
+    <BeatLoader
+      color={color}
+      loading={true}
+      cssOverride={override}
+      size={25}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+    />
   );
 }

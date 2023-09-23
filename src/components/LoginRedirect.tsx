@@ -3,7 +3,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useUserStore } from "../stores/user.store";
 import { useCharacterStore } from "../stores/character.store";
 import { Navigate } from "react-router-dom";
-import Loading from "./global/Loading";
 import LoadingPage from "../pages/LoadingPage";
 
 type navPath = null | string;
