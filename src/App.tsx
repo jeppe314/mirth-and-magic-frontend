@@ -9,12 +9,13 @@ import ErrorPage from "./pages/ErrorPage.tsx";
 import LoginRedirect from "./components/LoginRedirect.tsx";
 import LogoutComponent from "./pages/LogoutComponent.tsx";
 import CharacterCreationForm from "./components/CharacterCreationForm.tsx";
+import LoadingPage from "./pages/LoadingPage.tsx";
 
 function App() {
   const { isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
-    return <div>Loading...</div>; // TODO Loading page with spinner or sth else funny
+    return <LoadingPage />; // TODO Loading page with spinner or sth else funny
   }
 
   return (
@@ -26,8 +27,8 @@ function App() {
           <Route index path="/" element={<Home />} />
           <Route path="character" element={<Character />} />
           <Route path="login-redirect" element={<LoginRedirect />} />
-          <Route path="create-character" element={<CharacterCreationForm />}/>
-          {/* Add more protected routes here */ }
+          <Route path="create-character" element={<CharacterCreationForm />} />
+          {/* Add more protected routes here */}
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
