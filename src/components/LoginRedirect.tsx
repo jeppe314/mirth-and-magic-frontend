@@ -17,6 +17,7 @@ export default function LoginRedirect() {
   const { character: storeCharacter, getCharacterByUserId } = useCharacterStore();
 
   useEffect(() => {
+    console.log("effect");
     if (hasRun.current) return; // <-- Return early if the effect has already been executed
 
     const performCheck = async () => {

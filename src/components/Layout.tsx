@@ -1,17 +1,16 @@
+// Layout.tsx
 import Header from "../components/Header";
 import BottomNavigation from "../components/BottomNavigation";
 import { Outlet } from "react-router-dom";
 
-interface Props {}
-
-const Layout = ({}: Props) => {
+const Layout = () => {
   return (
     <div className="h-screen flex flex-col justify-between items-center font-sans">
-      {/* <Header /> */}
+      <Header />
       <div className="w-full h-full">
         <Outlet />
       </div>
-      {/* <BottomNavigation /> */}
+      <BottomNavigation />
     </div>
   );
 };

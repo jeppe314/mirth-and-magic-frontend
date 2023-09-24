@@ -1,17 +1,20 @@
-import { ReactNode } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import Layout from "./Layout";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoadingPage from "../pages/LoadingPage";
 
-interface ProtectedRouteProps {
-  isAllowed: boolean;
-  redirectPath?: string;
-  children?: ReactNode;
-}
+export const ProtectedRoute = () => {
+  const { isAuthenticated, isLoading } = useAuth0();
 
-export const ProtectedRoute = ({ isAllowed, redirectPath = "/login", children }: ProtectedRouteProps) => {
-  if (!isAllowed) {
-    return <Navigate to={redirectPath} replace />;
+  if (isLoading) {
+    // Consider showing a loading state only on initial load.
+    return <LoadingPage />;
   }
 
-  return <Layout>{children ? children : <Outlet />}</Layout>;
+  if (!isAuthenticated) {
+    // If not authenticated, redirect to login.
+    return <Navigate to="/login" />;
+  }
+
+  // If authenticated, render outlet
+  return <Outlet />;
 };

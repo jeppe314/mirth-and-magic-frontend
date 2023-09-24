@@ -9,23 +9,20 @@ import ErrorPage from "./pages/ErrorPage.tsx";
 import LoginRedirect from "./components/LoginRedirect.tsx";
 import LogoutComponent from "./pages/LogoutComponent.tsx";
 import CharacterCreationForm from "./components/CharacterCreationForm.tsx";
-import LoadingPage from "./pages/LoadingPage.tsx";
+import { LayoutWrapper } from "./components/global/LayoutWrapper.tsx";
+import Layout from "./components/Layout.tsx";
 
 function App() {
-  const { isAuthenticated, isLoading } = useAuth0();
-
-  if (isLoading) {
-    return <LoadingPage />; // TODO Loading page with spinner or sth else funny
-  }
-
   return (
     <BrowserRouter basename="/">
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/logout" element={<LogoutComponent />} />
-        <Route element={<ProtectedRoute isAllowed={isAuthenticated} />}>
-          <Route index path="/" element={<Home />} />
-          <Route path="character" element={<Character />} />
+        <Route element={<ProtectedRoute />}>
+          <Route element={<Layout />}>
+            <Route index path="/" element={<Home />} />
+            <Route path="character" element={<Character />} />
+          </Route>
           <Route path="login-redirect" element={<LoginRedirect />} />
           <Route path="create-character" element={<CharacterCreationForm />} />
           {/* Add more protected routes here */}
