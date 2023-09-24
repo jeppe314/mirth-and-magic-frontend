@@ -6,12 +6,10 @@ export default function Home() {
   const characterStore = useCharacterStore();
 
   return (
-    // <div className="h-full w-full flex flex-col justify-between items-center font-sans">
-    // <CharacterCreationForm />
     <div className="h-full flex flex-col justify-between items-center">
       HOOOME
-      {JSON.stringify(characterStore)}
-      {JSON.stringify(storeUser)}
+      {JSON.stringify(characterStore, undefined, 4)}
+      {JSON.stringify(storeUser, undefined, 4)}
       <LogoutButton />
     </div>
 

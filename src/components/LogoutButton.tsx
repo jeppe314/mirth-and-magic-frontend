@@ -9,7 +9,7 @@ const LogoutButton = () => {
   return (
     <>
       {navigate && <Navigate to="/login" replace />}
-      <GlobalButton text="Log out" onClick={handleLogout} />
+      <GlobalButton text="Log out" color="secondary" onClick={handleLogout} />
     </>
   );
 };
